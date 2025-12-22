@@ -118,17 +118,7 @@ export default {
   -webkit-box-orient: vertical;
 }
 
-.prompt-description {
-  font-size: 13px;
-  color: #999;
-  margin: 0;
-  line-height: 1.5;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
+/* 移除了不再使用的.prompt-description样式 */
 
 /* 提示词内容区域 */
 .prompt-content-wrapper {
