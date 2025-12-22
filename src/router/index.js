@@ -83,6 +83,21 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
+  // ForUsers详情页路由
+  {
+    path: '/forUsers/detail/:id',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/forUsers/detail'),
+        name: 'PromptDetail',
+        meta: { title: '提示词详情', noCache: true }
+      }
+    ]
+  },
+  
   {
     path: '/dashboard',
     component: Layout,
