@@ -21,6 +21,8 @@
         <prompt-item
           v-for="prompt in prompts"
           :key="prompt.id"
+
+          
           :prompt="prompt"
         ></prompt-item>
       </div>
