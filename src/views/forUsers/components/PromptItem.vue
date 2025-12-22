@@ -105,6 +105,8 @@ export default {
   overflow: hidden;
   cursor: pointer;
   border: 1px solid #f0f0f0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .prompt-item:hover {
@@ -239,12 +241,13 @@ export default {
 }
 
 .ai-image {
-  max-width: 100%;
+  width: 100%;
   max-height: 200px;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   object-fit: cover;
+  display: block;
 }
 
 .ai-image:hover {
@@ -273,6 +276,8 @@ export default {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .open-html-btn {
@@ -294,6 +299,12 @@ export default {
 
 .html-preview :last-child {
   margin-bottom: 0;
+}
+
+/* 确保内部所有容器都正确继承宽度 */
+.prompt-item > * {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* 查看详情指示器 */

@@ -184,5 +184,26 @@ print(f"空列表的平均值: {average_empty}")  # 输出: 空列表的平均�
 
 .prompt-list {
   margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 20px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .prompt-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-gap: 16px;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .prompt-list {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
