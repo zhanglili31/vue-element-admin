@@ -1,9 +1,8 @@
 <template>
   <div class="prompt-item" @click="handleItemClick">
-    <!-- 卡片头部：标题和描述 -->
+    <!-- 卡片头部：标题 -->
     <div class="prompt-header">
       <h3 class="prompt-title">{{ prompt.title }}</h3>
-      <p class="prompt-description">{{ prompt.description }}</p>
     </div>
     
     <!-- 提示词内容区域 -->
@@ -11,15 +10,6 @@
       <div class="prompt-content">
         {{ prompt.content }}
       </div>
-      <el-button
-        type="primary"
-        size="small"
-        class="copy-btn"
-        @click.stop="handleCopy"
-      >
-        <svg-icon icon-class="document-copy"></svg-icon>
-        复制
-      </el-button>
     </div>
     
     <!-- AI返回结果展示区域 -->
@@ -68,28 +58,23 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+    }
+  },
   methods: {
-    handleCopy() {
-      const input = document.createElement('input')
-      input.value = this.prompt.content
-      document.body.appendChild(input)
-      input.select()
-      document.execCommand('copy')
-      document.body.removeChild(input)
-      this.$message.success('复制成功')
-    },
+
+    // 点击item跳转到详情页
     handleItemClick() {
-      // 点击item查看详情的逻辑，这里可以跳转到详情页或显示详情弹窗
-      this.$message.info(`查看提示词 "${this.prompt.title}" 的详细信息`)
-      // 实际项目中可以使用路由跳转：
-      // this.$router.push(`/prompt/${this.prompt.id}`)
+      this.$router.push(`/forUsers/detail/${this.prompt.id}`)
     },
+    // 在新窗口中打开HTML内容
     handleOpenHtml() {
-      // 在新窗口中打开HTML内容
       const newWindow = window.open('', '_blank')
       newWindow.document.write(this.prompt.result)
       newWindow.document.close()
-    }
+    },
+
   }
 }
 </script>
@@ -149,7 +134,7 @@ export default {
 .prompt-content-wrapper {
   background: #fafafa;
   border-radius: 8px;
-  padding: 16px;
+  padding: 12px;
   position: relative;
   margin-bottom: 16px;
   border: 1px solid #f0f0f0;
@@ -167,24 +152,6 @@ export default {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-}
-
-.copy-btn {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  padding: 4px 8px;
-  background: #1890ff;
-  border: none;
-  transition: all 0.2s ease;
-  z-index: 1;
-}
-
-.copy-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
 /* AI结果区域 */
