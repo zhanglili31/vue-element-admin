@@ -36,7 +36,17 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    before: require('./mock/mock-server.js'),
+    // 配置跨域代理
+    proxy: {
+      // 匹配所有以 '/' 开头的请求路径，即所有请求
+      '/': {
+        target: 'http://localhost:8001', // 后端服务器地址，与VUE_APP_BASE_API一致
+        changeOrigin: true, // 允许跨域
+        ws: true, // 支持WebSocket
+        secure: false // 如果后端使用http而不是https，需要设置为false
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
