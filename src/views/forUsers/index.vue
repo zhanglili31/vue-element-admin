@@ -48,7 +48,7 @@ import IndustryTags from './components/IndustryTags'
 import PromptItem from './components/PromptItem'
 import Pagination from './components/Pagination'
 import Footer from './components/Footer'
-import { mockPrompts } from './mockData'
+import { getPromotes } from '@/api/promotes'
 
 export default {
   name: 'PromptCollection',
@@ -64,18 +64,38 @@ export default {
     return {
       currentPage: 1,
       pageSize: 10,
-      totalPrompts: 100,
+      totalPrompts: 0,
       searchQuery: '',
       activeTab: 'popular',
       activeIndustry: '',
-      prompts: mockPrompts
+      prompts: []
     }
   },
+  mounted() {
+    this.fetchPrompts()
+  },
   methods: {
+    fetchPrompts() {
+      const params = {
+        page: this.currentPage,
+        limit: this.pageSize,
+        industry: this.activeIndustry || undefined,
+        title: this.searchQuery || undefined
+      }
+      
+      getPromotes(params).then(response => {
+        this.prompts = response.data
+        this.totalPrompts = response.total
+        this.currentPage = response.page
+        this.pageSize = response.limit
+      }).catch(error => {
+        console.error('获取提示词失败:', error)
+      })
+    },
     handleSearch(query) {
       this.searchQuery = query
-      // 这里可以添加搜索逻辑
-      console.log('搜索关键词:', query)
+      this.currentPage = 1
+      this.fetchPrompts()
     },
     handleTabChange(tab) {
       this.activeTab = tab
@@ -84,13 +104,12 @@ export default {
     },
     handleIndustryChange(industry) {
       this.activeIndustry = industry
-      // 这里可以添加行业分类切换逻辑
-      console.log('切换到行业:', industry)
+      this.currentPage = 1
+      this.fetchPrompts()
     },
     handlePageChange(page) {
       this.currentPage = page
-      // 这里可以添加分页逻辑
-      console.log('切换到页码:', page)
+      this.fetchPrompts()
     }
   }
 }

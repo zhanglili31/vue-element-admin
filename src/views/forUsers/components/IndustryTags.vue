@@ -22,12 +22,12 @@ export default {
     return {
       activeIndustry: '',
       industryTags: [
-        { label: '图文', value: 'graphic' },
-        { label: '视频', value: 'video' },
-        { label: '编程', value: 'programming' },
-        { label: '办公', value: 'office' },
-        { label: '金融', value: 'finance' },
-        { label: '医疗', value: 'medical' }
+        { label: '计算机', value: '计算机' },
+        { label: '金融', value: '金融' },
+        { label: '医疗', value: '医疗' },
+        { label: '教育', value: '教育' },
+        { label: '法律', value: '法律' },
+        { label: '设计', value: '设计' }
       ]
     }
   },
