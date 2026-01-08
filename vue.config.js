@@ -36,7 +36,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js'),
+    // before: require('./mock/mock-server.js'), // 禁用 mock 服务器，使用真实后端 API
     // 配置跨域代理
     proxy: {
       // 匹配所有以 '/' 开头的请求路径，即所有请求
